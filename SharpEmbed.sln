@@ -2,7 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpEmbed", "SharpEmbed\SharpEmbed.csproj", "{E290C29D-BA34-4B72-8CDA-9A160981052D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpEmbed.Console", "SharpEmbed.Console\SharpEmbed.Console.csproj", "{04AE3076-A7CE-4F16-A867-8C172D6BB939}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpEmbed.Cli", "SharpEmbed.Cli\SharpEmbed.Cli.csproj", "{04AE3076-A7CE-4F16-A867-8C172D6BB939}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

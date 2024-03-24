@@ -1,9 +1,7 @@
 ﻿using System.CommandLine;
 using FastBertTokenizer;
 
-namespace SharpEmbed.Console;
-
-using Console = System.Console;
+namespace SharpEmbed.Cli;
 
 class Program
 {
