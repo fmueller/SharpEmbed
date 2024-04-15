@@ -45,8 +45,14 @@ class Program
         var decoded = tokenizer.Decode(inputIds.Span);
         Console.WriteLine($"Decoded: {decoded}");
 
-        var sentenceEmbeddings = new Embeddings(onnxModelPath, tokenizer).ComputeForSentence(text);
+        var embeddings = new Embeddings(onnxModelPath, tokenizer);
+
+        var sentenceEmbeddings = embeddings.ComputeForSentence(text);
         Console.WriteLine($"Embeddings: {string.Join(", ", sentenceEmbeddings)}");
         Console.WriteLine($"Embeddings Size: {sentenceEmbeddings.Length}");
+
+        var otherSentenceEmbeddings = embeddings.ComputeForSentence(text);
+        var similarity = embeddings.CosineSimilarity(sentenceEmbeddings, otherSentenceEmbeddings);
+        Console.WriteLine($"Similarity (should be 1): {similarity}");
     }
 }

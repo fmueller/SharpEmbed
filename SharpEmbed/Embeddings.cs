@@ -1,4 +1,5 @@
-﻿using FastBertTokenizer;
+﻿using System.Numerics.Tensors;
+using FastBertTokenizer;
 using Microsoft.ML.OnnxRuntime;
 using Microsoft.ML.OnnxRuntime.Tensors;
 
@@ -7,6 +8,7 @@ namespace SharpEmbed;
 public interface IEmbeddings
 {
     public float[] ComputeForSentence(string sentence);
+    public float CosineSimilarity(float[] embeddings, float[] otherEmbeddings);
 }
 
 public class Embeddings : IEmbeddings
@@ -34,6 +36,15 @@ public class Embeddings : IEmbeddings
         using var session = new InferenceSession(_pathToModel);
         var lastHiddenState = session.Run(inputs).First(item => item.Name == "last_hidden_state").AsTensor<float>();
         return MeanPooling(lastHiddenState, attentionMask);
+    }
+
+    public float CosineSimilarity(float[] embeddings, float[] otherEmbeddings)
+    {
+        if (embeddings.Length != otherEmbeddings.Length)
+        {
+            throw new ArgumentException("Embeddings must have the same length.");
+        }
+        return TensorPrimitives.CosineSimilarity(embeddings, otherEmbeddings);
     }
 
     private static NamedOnnxValue CreateTensor(string name, long[] data)
